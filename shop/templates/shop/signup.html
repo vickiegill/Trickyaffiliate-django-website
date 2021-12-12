@@ -1,0 +1,30 @@
+{% extends 'shop/basic.html'%}
+{% block title %}Signup{% endblock%}
+
+{% block body %}
+<div class="container my-4" >
+<form action="" method="post" class="mx-3" novalidate >
+    {% csrf_token %}
+     {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+            <p class="alert alert-warning">{{error}}</p>
+            {% endfor %}
+            {% endif %}
+    {% for fm in form %}
+    {{fm.label_tag}}  {{fm}} {{fm.errors|striptags}} <br><br>
+
+    {% endfor %}
+     <button class="btn btn-primary btn-rounded " type="submit" value="Signup">Signup</button><br><br>
+
+</form>
+    {%  if messages %}
+        {% for message in messages %}
+
+            <div class="alert alert-success my-2" role="alert">
+                           <small {% if messages.tags %} class=" success {{message.tags}}" {% endif %}>{{message}}</small>
+             </div>
+        {% endfor %}
+    {% endif %}
+<a href="{% url 'login' %}">Already Have An Account? Login</a>
+    </div>
+{% endblock %}

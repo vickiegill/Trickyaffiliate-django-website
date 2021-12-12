@@ -1,0 +1,20 @@
+{%extends 'shop/basic.html'%}
+{%block title%}profile{% endblock %}
+{% block body%}
+<div class="container">
+
+ {%  if messages %}
+        {% for message in messages %}
+    <div class="alert alert-success my-2 alert-dismissible fade show" role="alert">
+    <small {% if messages.tags %} class=" success {{message.tags}}" {% endif %}>{{message}}</small>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+        {% endfor %}
+    {% endif %}
+<h2 style="text-align:center" class="my-2">welcome {{name}}</h2>
+    <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+
+</div>
+{% endblock%}

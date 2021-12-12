@@ -1,0 +1,33 @@
+{%extends 'shop/basic.html'%}
+{% block title%}User Login{% endblock %}
+{% block body %}
+<div class="container my-4">
+    {%  if messages %}
+        {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <small {% if messages.tags %} class=" success {{message.tags}}" {% endif %}>{{message}}</small>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+        {% endfor %}
+    {% endif %}
+        <form action="" method="post" class="mx-3" novalidate>{% csrf_token %}
+            {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+            <p class="alert alert-warning">{{error}}</p>
+            {% endfor %}
+            {% endif %}
+          {% for fm in form %}
+            {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+          {% endfor %}
+            <button class="btn btn-primary" type="submit" value="Log In">Log In</button><br><br>
+
+
+        </form>
+
+
+
+<a href="{% url 'signup'%}" class="">Signup</a>
+</div>
+{% endblock %}
